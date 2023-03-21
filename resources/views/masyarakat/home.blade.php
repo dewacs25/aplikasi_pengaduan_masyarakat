@@ -7,13 +7,7 @@
         </div>
     </header>
     
-    <nav>
-        <ul>
-            <li><a href="#">Petugas</a></li>
-            <li><a href="#">Pengaduan</a></li>
-            <li><a href="#">Pengaturan</a></li>
-        </ul>
-    </nav>
+    @include('layouts.navMasyarakatMobile')
 
     {{--  desktop  --}}
     <div class="content">

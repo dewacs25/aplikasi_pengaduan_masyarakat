@@ -17,6 +17,9 @@ use App\Http\Controllers\PetugasAuthController;
 Route::get('/', function () {
     return view('masyarakat.home');
 })->middleware('auth.masyarakat');
+Route::get('/petugas', function () {
+    return view('masyarakat.petugas');
+})->middleware('auth.masyarakat');
 
 Route::get('/login', function () {
     return view('masyarakat.auth.login');
