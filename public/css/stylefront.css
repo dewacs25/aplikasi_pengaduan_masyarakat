@@ -331,6 +331,11 @@ nav li a {
 nav li a:hover {
     background-color: #03d100;
 }
+input:disabled {
+  opacity: 0.5;
+  background-color: #506b4c;
+  color: #999;
+}
 
 
 @media (max-width: 768px) {

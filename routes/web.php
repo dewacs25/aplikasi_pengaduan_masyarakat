@@ -21,6 +21,10 @@ Route::get('/petugas', function () {
     return view('masyarakat.petugas');
 })->middleware('auth.masyarakat');
 
+Route::get('/pengaturan', function () {
+    return view('masyarakat.pengaturan');
+})->middleware('auth.masyarakat');
+
 Route::get('/login', function () {
     return view('masyarakat.auth.login');
 });
