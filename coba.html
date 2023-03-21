@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Template</title>
+    <style>
+        /* CSS Styling for Navbar */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+        }
+
+        .navbar a {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+            font-size: 18px;
+            border-bottom: 1px solid #666;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* CSS Styling for Page Content */
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+        }
+
+        /* CSS Styling for Responsive Design */
+        @media screen and (max-width: 600px) {
+            .navbar {
+                width: 100%;
+                height: auto;
+            }
+
+            .navbar a {
+                float: none;
+                width: 100%;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+
+        /* CSS Styling for Table */
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: 14px;
+            min-width: 800px;
+            overflow-x: auto;
+            display: block;
+            white-space: nowrap;
+        }
+
+        .table th,
+        .table td {
+            text-align: left;
+            padding: 8px;
+            vertical-align: top;
+        }
+
+        .table thead th {
+            background-color: #333;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table tbody tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="#">Dashboard</a>
+        <a href="#">Profile</a>
+        <a href="#">Settings</a>
+        <a href="#">Logout</a>
+    </div>
+    <div class="content">
+        <h1>Welcome to Admin Template</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John Doe</td>
+                    <td>john.doe@example.com</td>
+                    <td>123-456-7890</td>
+                    <td>New York</td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>jane.smith@example.com</td>
+                    <td>555-555-5555</td>
+                    <td>Los Angeles</td>
+                </tr>
+
+                <tr>
+                    <td>Bob Johnson</td>
+                    <td>bob.johnson@example.com</td>
+                    <td>111-222-3333</td>
+                    <td>Chicago</td>
+                </tr>
+                <tr>
+                    <td>Alice Williams</td>
+                    <td>alice.williams@example.com</td>
+                    <td>444-444-4444</td>
+                    <td>Houston</td>
+                </tr>
+                <tr>
+                    <td>Mike Brown</td>
+                    <td>mike.brown@example.com</td>
+                    <td>777-777-7777</td>
+                    <td>Philadelphia</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
