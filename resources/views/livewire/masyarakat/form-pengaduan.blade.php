@@ -6,6 +6,8 @@
             @include('livewire.masyarakat.pengaturan')
         @elseif($petugas == true)
             @include('livewire.masyarakat.petugas')
+        @elseif($detail == true)
+            @include('livewire.masyarakat.detailLaporan')
         @else
             <div class="card-login mb-3">
                 <h3 class="text-center text-primary">Form Pengaduan</h3>
@@ -17,8 +19,8 @@
 
                 @if (session()->has('success'))
                     <div class="alert">
-                        <button class="closeAlert">&times;</button>
-                        <p>Ini adalah pesan alert</p>
+                        <button class="closeAlert" wire:click='DeleteSession'>&times;</button>
+                        <p>{{ session('success') }}</p>
                     </div>
                 @endif
 
@@ -39,8 +41,8 @@
                     <div class="card2">
                         <div class="row">
                             <div class="col-mobile-6">
-                                <span class="text-dark" wire:click='DetailLaporan' style="font-size: 15px; cursor: pointer;">
-                                    Pengaduan : {{ $row->created_at->format('d M Y') }}
+                                <span class="text-dark" wire:click="DetailLaporan({{ $row->id_pengaduan }})" style="font-size: 15px; cursor: pointer;">
+                                    {{ $row->created_at->format('d M Y H:i:s') }}
                                 </span>
                             </div>
                             <div class="col-mobile-6">

@@ -8,7 +8,10 @@
                     @endforeach
                 @endif
                 @if (session()->has('success'))
-                    <p>{{ session('success') }}</p>
+                    <div class="alert">
+                        <button class="closeAlert" wire:click='DeleteSession'>&times;</button>
+                        <p>{{ session('success') }}</p>
+                    </div>
                 @endif
                 <form method="POST" wire:submit.prevent='SaveAkun'>
                     <input type="hidden" wire:model='nikLama'>
