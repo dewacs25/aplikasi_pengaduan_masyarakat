@@ -40,7 +40,7 @@ class AuthMasyarakatController extends Controller
 
         if (Auth::guard('web')->attempt(['username' => $req->username, 'password' => $req->password])) {
             $req->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended('/')->with(session()->flash('success','Selamat Datang Di Website Pengaduan Masyarakat'));
         }else{
             return back()->withErrors([
                 'password' => 'Username atau password salah'

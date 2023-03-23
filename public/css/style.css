@@ -175,12 +175,17 @@ body {
 .d-flex {
 	display: flex;
 }
-.d-inline{
+
+.d-inline {
 	display: inline;
 }
 
 .justify-content-center {
 	justify-content: center;
+}
+
+.table-responsive {
+	overflow-x: auto;
 }
 
 table {
@@ -305,4 +310,6 @@ table tr:nth-child(even) {
 	.card-login {
 		margin-top: 30px;
 	}
+
+
 }

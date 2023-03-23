@@ -6,11 +6,6 @@
             <h2>Pengaduan Masyarakat Secara Online</h5>
         </div>
     </header>
-    
-    @include('layouts.navMasyarakatMobile')
 
-    {{--  desktop  --}}
-    <div class="content">
-        @livewire('masyarakat.form-pengaduan')
-    </div>
+    @livewire('masyarakat.form-pengaduan')
 @endsection
