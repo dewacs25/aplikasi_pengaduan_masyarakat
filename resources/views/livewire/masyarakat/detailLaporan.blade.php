@@ -1,6 +1,5 @@
 <div>
-    <button wire:click='close' class="btn">
-        <</button>
+    <button wire:click='close' class="btn btn-sm btn-transparent"><span><img src="{{ asset('img/back.svg') }}" width="30px" alt=""></span></button>
             <div class="row">
                 <div class="col-6 card">
                     
@@ -27,7 +26,10 @@
             </div>
             <div class="row mb-5">
                 <div class="col">
+                    @if ($status != 'selesai')
+                        
                     <button class="btn btn-sm btn-danger" wire:click='DeleteLaporan({{ $id_pengaduan }})'>Delete</button>
+                    @endif
                 </div>
             </div>
 </div>

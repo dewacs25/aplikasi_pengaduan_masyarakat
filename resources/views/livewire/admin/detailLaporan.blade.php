@@ -1,5 +1,8 @@
 <div>
+
     <h1>Detail Pengaduan</h1>
+    <button wire:click='close' class="btn btn-sm btn-transparent"><span><img src="{{ asset('img/back.svg') }}"
+                width="30px" alt=""></span></button>
 
     <div class="row">
         <div class="col-6">
@@ -13,7 +16,18 @@
             <div class="card">
                 <h3 class="text-dark">Foto :</h3>
                 <img src="{{ asset('storage/image/laporan/' . $foto) }}" width="100%" alt="">
+                <h3 class="text-dark">Status :</h3>
+                <span
+                    class="text-light 
+                                @if ($status == 'proses') bg-warning
+                                @elseif($status == 'selesai')
+                                bg-success @endif
+                                "
+                    style="margin-right: 10px; padding: 2px; padding-left: 10px; padding-right: 10px; border-radius: 10px">
+                    {{ $status }}
+                </span>
             </div>
+
         </div>
 
         <div class="col-6">
@@ -23,8 +37,12 @@
                 <button class="btn btn-sm btn-secondary ">Kirim</button>
             </div>
             <div class="card">
-                <button class="btn btn-sm btn-primary">Verifikasi</button>
-                <button class="btn btn-sm btn-danger">Delete</button>
+                @if ($status == 'selesai')
+                    <button class="btn btn-secondary btn-sm" wire:click="Unverified">Unverified</button>
+                @else
+                    <button class="btn btn-sm btn-primary" wire:click="Verified">Verified</button>
+                @endif
+                <button class="btn btn-sm btn-danger" wire:click="DeleteLaporan">Delete</button>
 
             </div>
         </div>

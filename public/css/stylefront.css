@@ -137,6 +137,9 @@ body {
 .bg-primary {
     background-color: #039700;
 }
+.bg-success {
+    background-color: #03ce00;
+}
 
 .bg-warning {
     background-color: #B0CD00;
@@ -145,6 +148,7 @@ body {
 .bg-light {
     background-color: #f1f1f1;
 }
+
 
 .border-0 {
     border: none;
@@ -252,7 +256,9 @@ table tr:nth-child(even) {
     border: none;
     transition: all 400ms;
 }
-
+.btn-transparent{
+    background-color: #ffffff00;
+}
 .btn-sm {
     padding: 0.4rem 0.5rem;
     font-size: 14px;

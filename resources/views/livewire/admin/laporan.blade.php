@@ -17,6 +17,7 @@
                         <th>Nama</th>
                         <th>Telepon</th>
                         <th>Waktu Pengaduan</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -28,8 +29,16 @@
                             <td>{{ $row->masyarakat->nama }}</td>
                             <td>{{ $row->masyarakat->telp }}</td>
                             <td>{{ $row->created_at->format('d M Y H:i:s') }}</td>
+                            <td><span
+                                    class="text-light
+                                @if ($row->status == 'proses') bg-warning
+                                @elseif($row->status == 'selesai')
+                                bg-success @endif
+                                " style="padding: 2px; padding-left: 10px; padding-right: 10px; border-radius: 10px">{{ $row->status }}</span>
+                            </td>
                             <td>
-                                <button class="btn btn-sm btn-primary" wire:click="detail({{ $row->id_pengaduan }})">Detail</button>
+                                <button class="btn btn-sm btn-primary"
+                                    wire:click="detail({{ $row->id_pengaduan }})">Detail</button>
                             </td>
                         </tr>
                     @endforeach

@@ -113,6 +113,9 @@ body {
 .bg-danger {
 	background-color: #970000;
 }
+.bg-success {
+    background-color: #03ce00;
+}
 
 .bg-primary {
 	background-color: #039700;
@@ -236,6 +239,9 @@ table tr:nth-child(even) {
 	background-color: #ffff;
 	border: none;
 	transition: all 400ms;
+}
+.btn-transparent{
+    background-color: #ffffff00;
 }
 
 .btn-sm {
