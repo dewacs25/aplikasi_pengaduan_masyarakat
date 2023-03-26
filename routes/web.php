@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthMasyarakatController;
+use App\Http\Controllers\DetailLaporanController;
 use App\Http\Controllers\PetugasAuthController;
 
 /*
@@ -45,6 +46,13 @@ Route::get('/admin', function () {
 Route::get('/admin/laporan', function () {
     return view('admin.laporan');
 })->middleware('auth.petugas');
+
+// Route::get('/admin/laporan/{id}',[DetailLaporanController::class,'index'])->middleware('auth.petugas');
+// Route::post('/admin/laporan/unverified/{id}',[DetailLaporanController::class,'Unverified'])->middleware('auth.petugas')->name('unverified');
+// Route::post('/admin/laporan/verified/{id}',[DetailLaporanController::class,'Verified'])->middleware('auth.petugas')->name('verified');
+// Route::post('/admin/laporan/tanggapan/{id}',[DetailLaporanController::class,'Tanggapan'])->middleware('auth.petugas')->name('tanggapan');
+// Route::delete('/admin/laporan/hapus/{id}',[DetailLaporanController::class,'Delete'])->middleware('auth.petugas')->name('delete');
+
 Route::get('/admin/registrasi', function () {
     return view('admin.registrasi');
 })->middleware(['auth.petugas','auth.admin']);

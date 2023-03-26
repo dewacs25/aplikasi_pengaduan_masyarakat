@@ -3,11 +3,17 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Pengaduan;
+use App\Models\Tanggapan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Laporan extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
     public $detail;
 
     public $isi_laporan;
@@ -17,12 +23,24 @@ class Laporan extends Component
     public $status;
     public $idPengaduan;
 
+    public $tanggapan;
+
+    public $dataTanggapan = [];
+
+
+    public function __construct()
+    {
+        if ($this->tanggapan) {
+            $this->dataTanggapan = [];
+        }
+    }
+
     public function render()
     {
         $data =  Pengaduan::paginate(10);
-       
-        return view('livewire.admin.laporan',[
-            'data'=>$data
+
+        return view('livewire.admin.laporan', [
+            'data' => $data
         ]);
     }
 
@@ -30,18 +48,19 @@ class Laporan extends Component
     {
         $this->detail = "";
 
-    $this->isi_laporan = "";
-    $this->foto = "";
-    $this->username = "";
-    $this->nama = "";
-    $this->status = "";
-    $this->idPengaduan = "";
+        $this->isi_laporan = "";
+        $this->foto = "";
+        $this->username = "";
+        $this->nama = "";
+        $this->status = "";
+        $this->idPengaduan = "";
     }
+
 
     public function detail($id)
     {
         $this->detail = true;
-        $data = Pengaduan::where('id_pengaduan',$id)->get()->first();
+        $data = Pengaduan::where('id_pengaduan', $id)->get()->first();
         $this->isi_laporan = $data->isi_laporan;
         $this->username = $data->masyarakat->username;
         $this->nama = $data->masyarakat->nama;
@@ -52,6 +71,7 @@ class Laporan extends Component
         } else {
             $this->foto = $data->foto;
         }
+        $this->dataTanggapan = Tanggapan::where('id_pengaduan', $id)->get();
     }
 
     public function DeleteSession()
@@ -61,18 +81,18 @@ class Laporan extends Component
 
     public function Verified()
     {
-        Pengaduan::where('id_pengaduan',$this->idPengaduan)->update([
-            'status'=>'selesai'
+        Pengaduan::where('id_pengaduan', $this->idPengaduan)->update([
+            'status' => 'selesai'
         ]);
-        session()->flash('success','Success Verified');
+        session()->flash('success', 'Success Verified');
         $this->detail($this->idPengaduan);
     }
     public function Unverified()
     {
-        Pengaduan::where('id_pengaduan',$this->idPengaduan)->update([
-            'status'=>'proses'
+        Pengaduan::where('id_pengaduan', $this->idPengaduan)->update([
+            'status' => 'proses'
         ]);
-        session()->flash('success','Success Proses');
+        session()->flash('success', 'Success Proses');
         $this->detail($this->idPengaduan);
     }
     public function DeleteLaporan()
@@ -83,5 +103,22 @@ class Laporan extends Component
         Pengaduan::where('id_pengaduan', $this->idPengaduan)->delete();
         $this->close();
         session()->flash('success', 'Hapus Laporan Berhasil');
+    }
+
+    public function KirimTanggapan()
+    {
+        $this->validate([
+            'tanggapan' => 'required'
+        ]);
+
+        Tanggapan::create([
+            'id_pengaduan' => $this->idPengaduan,
+            'tgl_tanggapan' => date('Y-m-d'),
+            'tanggapan' => $this->tanggapan,
+            'id_petugas' => Auth::guard('petugas')->user()->id_petugas,
+        ]);
+        $this->tanggapan = "";
+        $this->detail($this->idPengaduan);
+        session()->flash('success', 'Tanggapan Berhasil Terkirim');
     }
 }

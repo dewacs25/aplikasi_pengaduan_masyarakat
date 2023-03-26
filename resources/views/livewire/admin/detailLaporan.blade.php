@@ -27,14 +27,28 @@
                     {{ $status }}
                 </span>
             </div>
+            <div class="card">
+                <h3 class="text-dark">Tanggapan</h3>
+                @foreach ($dataTanggapan as $isi)
+                    <p>{{ $isi->tanggapan }}</p>
+                @endforeach
+                
+            </div>
 
         </div>
 
         <div class="col-6">
             <div class="card">
-                <h3 class="text-dark">Tanggapan</h3>
-                <textarea class="form-control mb-1" rows="6" placeholder="Berikan Tanggapan"></textarea>
-                <button class="btn btn-sm btn-secondary ">Kirim</button>
+                
+                @if ($errors->any())
+                    @foreach ($errors->all() as $er)
+                        <p style="font-size: 12px; color: red">{{ $er }}</p>
+                    @endforeach
+                @endif
+                <form method="POST" wire:submit.prevent="KirimTanggapan">
+                    <textarea wire:model="tanggapan" class="form-control mb-1" rows="6" placeholder="Berikan Tanggapan"></textarea>
+                    <button type="submit" class="btn btn-sm btn-secondary ">Kirim</button>
+                </form>
             </div>
             <div class="card">
                 @if ($status == 'selesai')
@@ -42,7 +56,10 @@
                 @else
                     <button class="btn btn-sm btn-primary" wire:click="Verified">Verified</button>
                 @endif
+                @if (Auth::guard('petugas')->user()->level == 'admin')
+                    
                 <button class="btn btn-sm btn-danger" wire:click="DeleteLaporan">Delete</button>
+                @endif
 
             </div>
         </div>

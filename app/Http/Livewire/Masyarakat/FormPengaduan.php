@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Masyarakat;
 
 use App\Models\Masyarakat;
 use App\Models\Pengaduan;
+use App\Models\Tanggapan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -28,6 +29,9 @@ class FormPengaduan extends Component
     public $nikLama;
 
     public $detail;
+
+    public $dataTanggapan = [];
+
 
     use WithFileUploads;
 
@@ -77,6 +81,7 @@ class FormPengaduan extends Component
         $this->pengaturan = "";
         $this->petugas = "";
         $this->detail = "";
+        $this->dataTanggapan = [];
     }
     public function SaveAkun()
     {
@@ -137,6 +142,8 @@ class FormPengaduan extends Component
         $this->detailGambarLaporan = $data->foto;
         $this->status = $data->status;
         $this->id_pengaduan = $data->id_pengaduan;
+        $this->dataTanggapan = Tanggapan::where('id_pengaduan',$id)->get();
+       
     }
 
     public function DeleteLaporan($id)
@@ -148,6 +155,4 @@ class FormPengaduan extends Component
         $this->close();
         session()->flash('success', 'Hapus Laporan Berhasil');
     }
-
-   
 }
