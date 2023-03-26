@@ -8,6 +8,7 @@
         {{-- <div class="mb-3">
         <a wire:click="btnTambah" class="btn btn-secondary">Tambah</a>
     </div> --}}
+        <input type="text" class="mb-3" placeholder="Cari Username" wire:model="cariUsername">
         <div class="table-responsive">
             <table>
                 <thead>
@@ -24,7 +25,11 @@
                 <tbody>
                     @foreach ($data as $key => $row)
                         <tr>
-                            <td>{{ ($data->currentPage() - 1) * $data->perPage() + $key + 1 }}</td>
+                            @if ($cariUsername)
+                                <td>{{ ++$key }}</td>
+                            @else
+                                <td>{{ ($data->currentPage() - 1) * $data->perPage() + $key + 1 }}</td>
+                            @endif
                             <td>{{ $row->masyarakat->username }}</td>
                             <td>{{ $row->masyarakat->nama }}</td>
                             <td>{{ $row->masyarakat->telp }}</td>
@@ -34,7 +39,8 @@
                                 @if ($row->status == 'proses') bg-warning
                                 @elseif($row->status == 'selesai')
                                 bg-success @endif
-                                " style="padding: 2px; padding-left: 10px; padding-right: 10px; border-radius: 10px">{{ $row->status }}</span>
+                                "
+                                    style="padding: 2px; padding-left: 10px; padding-right: 10px; border-radius: 10px">{{ $row->status }}</span>
                             </td>
                             <td>
                                 <button class="btn btn-sm btn-primary"
@@ -44,8 +50,15 @@
                     @endforeach
                 </tbody>
             </table>
+            @if (count($data) < 1)
+                <center>
+                    <h2>Data Kosong</h2>
+                </center>
+            @endif
             <br>
-            {{ $data->links() }}
+            @if (!$cariUsername)
+                {{ $data->links() }}
+            @endif
         </div>
     @endif
 

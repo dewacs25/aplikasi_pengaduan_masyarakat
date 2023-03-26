@@ -27,6 +27,8 @@ class Laporan extends Component
 
     public $dataTanggapan = [];
 
+    public $cariUsername;
+
 
     public function __construct()
     {
@@ -38,6 +40,12 @@ class Laporan extends Component
     public function render()
     {
         $data =  Pengaduan::paginate(10);
+
+        if ($this->cariUsername) {
+            $data = Pengaduan::whereHas('masyarakat', function ($query) {
+                $query->where('username', 'like', '%' . $this->cariUsername . '%');
+            })->get();
+        }
 
         return view('livewire.admin.laporan', [
             'data' => $data

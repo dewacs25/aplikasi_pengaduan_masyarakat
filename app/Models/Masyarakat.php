@@ -23,6 +23,6 @@ class Masyarakat extends Authenticatable
     ];
     public function pengaduan()
     {
-        return $this->hasOne('App\Models\Pengaduan', 'id_masyarakat');
+        return $this->hasMany('App\Models\Pengaduan', 'id_masyarakat');
     }
 }
