@@ -1,4 +1,4 @@
-<button id="sidebar-toggle">=</button>
+<button id="sidebar-toggle" class="btn btn-sm">=</button>
     <div class="sidebar">
         <div class="logo">
             <img src="logo.png" alt="Pengaduan Masyarakat">
@@ -15,10 +15,12 @@
                 <a href="/admin/registrasi">Registrasi</a>
             </li>
             @endif
+            <li class="<?php if ($url == 'http://127.0.0.1:8000/admin/laporan'):?> active <?php endif ?>">
+                <a href="/admin/laporan">Laporan</a>
+            </li>
             <li >
                 <a href="{{ route('logout.admin') }}">Logout</a>
             </li>
            
         </ul>
-
 </div>

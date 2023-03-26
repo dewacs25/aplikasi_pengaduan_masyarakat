@@ -18,4 +18,8 @@ class Pengaduan extends Model
         'foto',
         'status',
     ];
+    public function masyarakat()
+    {
+        return $this->belongsTo('App\Models\Masyarakat', 'id_masyarakat');
+    }
 }

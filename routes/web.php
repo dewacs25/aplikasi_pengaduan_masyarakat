@@ -42,6 +42,9 @@ Route::get('/logout',[AuthMasyarakatController::class,'logout'])->name('logout')
 Route::get('/admin', function () {
     return view('admin.dashboard');
 })->middleware('auth.petugas');
+Route::get('/admin/laporan', function () {
+    return view('admin.laporan');
+})->middleware('auth.petugas');
 Route::get('/admin/registrasi', function () {
     return view('admin.registrasi');
 })->middleware(['auth.petugas','auth.admin']);

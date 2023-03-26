@@ -21,4 +21,8 @@ class Masyarakat extends Authenticatable
         'password',
         'telp',
     ];
+    public function pengaduan()
+    {
+        return $this->hasOne('App\Models\Pengaduan', 'id_masyarakat');
+    }
 }

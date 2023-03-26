@@ -283,6 +283,47 @@ table tr:nth-child(even) {
 	float: right;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-item {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+.pagination-link {
+    color: #333;
+    text-decoration: none;
+}
+
+.pagination-link:hover {
+    text-decoration: underline;
+}
+
+.pagination-previous,
+.pagination-next {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+.pagination-previous a,
+.pagination-next a {
+    color: #333;
+    text-decoration: none;
+}
+
+.pagination-previous.disabled,
+.pagination-next.disabled {
+    color: #ccc;
+    cursor: default;
+}
 
 
 @media (max-width: 768px) {
@@ -311,5 +352,8 @@ table tr:nth-child(even) {
 		margin-top: 30px;
 	}
 
-
+	.col-6 {
+        grid-column: span 12;
+        margin-bottom: 10px;
+    }
 }

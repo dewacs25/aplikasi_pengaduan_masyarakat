@@ -131,7 +131,7 @@ class FormPengaduan extends Component
         $this->close();
         $this->detail = true;
 
-        $data = Pengaduan::where('id_pengaduan',$id)->orderBy('created_at','desc')->get()->first();
+        $data = Pengaduan::where('id_pengaduan', $id)->orderBy('created_at', 'desc')->get()->first();
 
         $this->isiLaporan = $data->isi_laporan;
         $this->detailGambarLaporan = $data->foto;
@@ -142,10 +142,12 @@ class FormPengaduan extends Component
     public function DeleteLaporan($id)
     {
         if (!$this->detailGambarLaporan == null) {
-           unlink(public_path('storage/image/laporan/'.$this->detailGambarLaporan));
+            unlink(public_path('storage/image/laporan/' . $this->detailGambarLaporan));
         }
-        Pengaduan::where('id_pengaduan',$id)->delete();
+        Pengaduan::where('id_pengaduan', $id)->delete();
         $this->close();
-        session()->flash('success','Hapus Laporan Berhasil');
+        session()->flash('success', 'Hapus Laporan Berhasil');
     }
+
+   
 }

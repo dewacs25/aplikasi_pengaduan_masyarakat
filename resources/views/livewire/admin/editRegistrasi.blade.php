@@ -11,9 +11,9 @@
                 @endif
                 <h3 class="text-dark">Masukan Data User</h3>
 
-                <form method="POST" wire:submit.prevent="Tambah">
-
-
+                <form method="POST" wire:submit.prevent="Edit">
+                    <input type="hidden" wire:model='nikLama'>
+                    <input type="hidden" wire:model='usernameLama'>
                     <div class="mb-3">
                         <label for="nik"><span class="">Nik :</span></label>
                         <input wire:model='nik' type="number" id="nik" name="nik" class="form-control">
@@ -34,10 +34,6 @@
                             class="btn btn-secondary btn-sm tombolGenerate">Generate
                             Username</button>
                     </div>
-                    <div class="mb-3">
-                        <label for="password"><span class="">Password :</span></label>
-                        <input wire:model='password' type="password" id="password" name="password" class="form-control">
-                    </div>
 
                     <div class="mb-3">
                         <label for="telepon"><span class="">No Telp :</span></label>
@@ -45,7 +41,7 @@
                     </div>
                     <br>
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-sm btn-primary">Add</button>
+                        <button type="submit" class="btn btn-sm btn-primary">Save</button>
                         <a wire:click="close" class="btn btn-danger btn-sm mb-3">Cancel</a>
                     </div>
                 </form>
