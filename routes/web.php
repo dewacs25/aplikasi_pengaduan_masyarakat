@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthMasyarakatController;
 use App\Http\Controllers\DetailLaporanController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PetugasAuthController;
 
 /*
@@ -46,6 +47,9 @@ Route::get('/admin', function () {
 Route::get('/admin/laporan', function () {
     return view('admin.laporan');
 })->middleware('auth.petugas');
+
+Route::get('/admin/pdf/{id}',[PDFController::class,'buatPdf']);
+
 
 // Route::get('/admin/laporan/{id}',[DetailLaporanController::class,'index'])->middleware('auth.petugas');
 // Route::post('/admin/laporan/unverified/{id}',[DetailLaporanController::class,'Unverified'])->middleware('auth.petugas')->name('unverified');

@@ -73,6 +73,7 @@
                     
                 <button class="btn btn-sm btn-danger" wire:click="DeleteLaporan">Delete</button>
                 @endif
+                <a href="/admin/pdf/{{ $idPengaduan }}" class="btn btn-sm btn-secondary">PDF</a>
 
             </div>
         </div>

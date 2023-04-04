@@ -23,6 +23,7 @@ class Laporan extends Component
     public $status;
     public $idPengaduan;
 
+
     public $tanggapan;
 
     public $dataTanggapan = [];
@@ -62,6 +63,7 @@ class Laporan extends Component
         $this->nama = "";
         $this->status = "";
         $this->idPengaduan = "";
+      
     }
 
 
