@@ -1,4 +1,6 @@
 @extends('layouts.appAdmin')
 @section('content_admin')
-@livewire('admin.dashboard')
+@include('layouts.alert') 
+@livewire('admin.data-petugas')
+    
 @endsection

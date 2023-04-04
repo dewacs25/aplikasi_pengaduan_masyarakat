@@ -14,6 +14,9 @@
             <li class="<?php if ($url == 'http://127.0.0.1:8000/admin/registrasi'):?> active <?php endif ?>">
                 <a href="/admin/registrasi">Registrasi</a>
             </li>
+            <li class="<?php if ($url == 'http://127.0.0.1:8000/admin/petugas'):?> active <?php endif ?>">
+                <a href="/admin/petugas">Petugas</a>
+            </li>
             @endif
             <li class="<?php if ($url == 'http://127.0.0.1:8000/admin/laporan'):?> active <?php endif ?>">
                 <a href="/admin/laporan">Laporan</a>

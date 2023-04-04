@@ -56,9 +56,12 @@ Route::get('/admin/laporan', function () {
 Route::get('/admin/registrasi', function () {
     return view('admin.registrasi');
 })->middleware(['auth.petugas','auth.admin']);
+Route::get('/admin/petugas', function () {
+    return view('admin.petugas');
+})->middleware(['auth.petugas','auth.admin']);
+
 Route::post('/admin/login',[PetugasAuthController::class,'login'])->name('login.petugas');
 Route::get('/admin/logout',[PetugasAuthController::class,'logout'])->name('logout.admin');
-
 
 Route::get('/admin/login', function () {
     return view('admin.auth.login');

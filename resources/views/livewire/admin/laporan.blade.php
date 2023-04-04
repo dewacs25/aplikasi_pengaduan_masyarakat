@@ -34,11 +34,19 @@
                             <td>{{ $row->masyarakat->nama }}</td>
                             <td>{{ $row->masyarakat->telp }}</td>
                             <td>{{ $row->created_at->format('d M Y H:i:s') }}</td>
-                            <td><span
+                            <td>
+                                @php
+                                    if ($row->status == '0') {
+                                        $row->status = 'reject';
+                                    }
+                                @endphp
+                                <span
                                     class="text-light
                                 @if ($row->status == 'proses') bg-warning
                                 @elseif($row->status == 'selesai')
-                                bg-success @endif
+                                bg-success 
+                                @elseif($row->status == 'reject')
+                                bg-danger @endif
                                 "
                                     style="padding: 2px; padding-left: 10px; padding-right: 10px; border-radius: 10px">{{ $row->status }}</span>
                             </td>

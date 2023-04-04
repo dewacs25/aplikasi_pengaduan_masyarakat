@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    @include('layouts.navMasyarakat')
 
     @yield('content')
     @livewireScripts

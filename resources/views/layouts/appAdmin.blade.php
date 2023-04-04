@@ -13,7 +13,7 @@
     @livewireStyles
 
     <body>
-
+        
         @include('layouts.navAdmin')
         <div class="content">
             @yield('content_admin')

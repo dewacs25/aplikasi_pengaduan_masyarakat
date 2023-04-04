@@ -129,4 +129,21 @@ class Laporan extends Component
         $this->detail($this->idPengaduan);
         session()->flash('success', 'Tanggapan Berhasil Terkirim');
     }
+    public function Reject()
+    {
+        Pengaduan::where('id_pengaduan', $this->idPengaduan)->update([
+            'status' => '0'
+        ]);
+        session()->flash('success', 'Success Proses');
+        $this->detail($this->idPengaduan);
+    }
+
+    public function Accept()
+    {
+        Pengaduan::where('id_pengaduan', $this->idPengaduan)->update([
+            'status' => 'proses'
+        ]);
+        session()->flash('success', 'Success Proses');
+        $this->detail($this->idPengaduan);
+    }
 }

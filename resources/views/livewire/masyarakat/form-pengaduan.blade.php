@@ -1,5 +1,7 @@
 <div>
     @include('layouts.navMasyarakatMobile')
+    @include('layouts.navMasyarakat')
+
 
     <div class="content">
         @if ($pengaturan == true)

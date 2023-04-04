@@ -17,11 +17,19 @@
                 <h3 class="text-dark">Foto :</h3>
                 <img src="{{ asset('storage/image/laporan/' . $foto) }}" width="100%" alt="">
                 <h3 class="text-dark">Status :</h3>
+                @php
+                    if ($status == '0') {
+                        $status = 'reject';
+                    }
+                @endphp
                 <span
                     class="text-light 
                                 @if ($status == 'proses') bg-warning
                                 @elseif($status == 'selesai')
-                                bg-success @endif
+                                bg-success
+                                @elseif($status == 'reject')
+                                bg-danger
+                                @endif
                                 "
                     style="margin-right: 10px; padding: 2px; padding-left: 10px; padding-right: 10px; border-radius: 10px">
                     {{ $status }}
@@ -53,8 +61,13 @@
             <div class="card">
                 @if ($status == 'selesai')
                     <button class="btn btn-secondary btn-sm" wire:click="Unverified">Unverified</button>
+                @elseif($status == 'reject')
+                    <button class="btn btn-sm btn-warning" wire:click="Accept">Accept</button>
                 @else
                     <button class="btn btn-sm btn-primary" wire:click="Verified">Verified</button>
+                @endif
+                @if ($status == 'proses')
+                    <button class="btn btn-danger btn-sm" wire:click="Reject">Reject</button>
                 @endif
                 @if (Auth::guard('petugas')->user()->level == 'admin')
                     
