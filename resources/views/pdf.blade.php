@@ -17,8 +17,22 @@
     <center>
 
         <h4>Foto Laporan</h4>
-        <img src="{{ public_path('storage/image/laporan/' . $data->foto) }}" alt="">
+        @php
+            if ($data->foto) {
+                $path = 'storage/image/laporan/'.$data->foto;
+            }else{
+                $path = 'img/imgNone.png';
+            }
+        @endphp
+        <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path($path))) }}" alt="" style="width: 200px">
+        
     </center>
+
+    <h4>Tanggapan :</h4>
+    @foreach ($tanggapan as $row)
+        <p>Nama Petugas : {{ $row->petugas->nama_petugas }} </p>
+        {{ $row->tanggapan }}
+    @endforeach
 
 </body>
 </html>

@@ -21,4 +21,9 @@ class Petugas extends Authenticatable
         'telp',
         'level',
     ];
+
+    public function prtugas()
+    {
+        return $this->hasMany('App\Models\Tanggapan', 'id_petugas');
+    }
 }
