@@ -13,16 +13,8 @@ sidebarToggle.addEventListener("click", () => {
 
 // generate username
 
-function generateUsername(name) {
-  let username = name;
-  const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
-  for (let i = 0; i < 8; i++) {
-    const randomIndex = Math.floor(Math.random() * characters.length);
-    username += characters[randomIndex];
-  }
 
-  return username;
-}
+
 
 const switalert = document.querySelector('.switalert');
 const okButton = document.querySelector('.switalert-ok');

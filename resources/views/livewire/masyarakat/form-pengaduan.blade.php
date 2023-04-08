@@ -1,70 +1,67 @@
 <div>
-    @include('layouts.navMasyarakatMobile')
     @include('layouts.navMasyarakat')
 
-
-    <div class="content">
-        @if ($pengaturan == true)
-            @include('livewire.masyarakat.pengaturan')
-        @elseif($petugas == true)
-            @include('livewire.masyarakat.petugas')
-        @elseif($detail == true)
-            @include('livewire.masyarakat.detailLaporan')
-        @else
-            <div class="card-login mb-3">
-                <h3 class="text-center text-primary">Form Pengaduan</h3>
-                @if ($errors->any())
-                    @foreach ($errors->all() as $er)
-                        <p style="font-size: 12px; color: red">{{ $er }}</p>
-                    @endforeach
-                @endif
-
-                @if (session()->has('success'))
-                    <div class="alert">
-                        <button class="closeAlert" wire:click='DeleteSession'>&times;</button>
-                        <p>{{ session('success') }}</p>
-                    </div>
-                @endif
-
-
-                <input type="file" wire:model='gambar' placeholder="Gambar" class="form-control mb-3">
-                @if ($gambar)
-                    <img src="{{ $gambar->temporaryUrl() }}" style="width: 100%" alt="">
-                @endif
-                <textarea wire:model='isiLaporan' name="isiLaporan" id="" rows="5" class="form-control mb-3"
-                    placeholder="Masukan Laporan Anda"></textarea>
-                <center>
-                    <button wire:click="KirimLaporan" class="btn btn-primary mb-3">Kirim</button>
-                </center>
+    @if ($pengaturan == true)
+        @include('livewire.masyarakat.pengaturan')
+    @elseif($petugas == true)
+        @include('livewire.masyarakat.petugas')
+    @elseif($detail == true)
+        @include('livewire.masyarakat.detailLaporan')
+    @else
+        @auth
+            @include('livewire.masyarakat.historyPengaduan')
+        @endauth
+        @guest
+        <section class="hero">
+            <h1>Laporkan keluhan Anda sekarang!</h1>
+        </section>
+        <section class="layanan">
+            <div class="isiLayanan">
+                <i class="fa fa-user"></i>
+                <h2>Daftar Akun</h2>
+                <p>
+                    Daftarkan akun Anda untuk dapat melaporkan pengad an dengan mudah
+                    dan cepat.
+                </p>
             </div>
-            <div class="mt-5 mb-5">
-                <h4 class="text-dark">History Pengaduan :</h4>
-                @foreach ($data as $row)
-                    <div class="card2">
-                        <div class="row">
-                            <div class="col-mobile-6">
-                                <span class="text-dark" wire:click="DetailLaporan({{ $row->id_pengaduan }})" style="font-size: 15px; cursor: pointer;">
-                                    {{ $row->created_at->format('d M Y H:i:s') }}
-                                </span>
-                            </div>
-                            <div class="col-mobile-6">
-                                <span
-                                    class="text-light float-end 
-                                @if ($row->status == 'proses') bg-warning
-                                @elseif($row->status == 'selesai')
-                                bg-success @endif
-                                "
-                                    style="margin-right: 10px; padding: 2px; padding-left: 10px; padding-right: 10px; border-radius: 10px">
-                                    {{ $row->status }}
-                                </span>
-                            </div>
-                        </div>
-
-                    </div>
-                @endforeach
-
+            <div class="isiLayanan">
+                <i class="fa fa-comments"></i>
+                <h2>Laporkan Pengaduan</h2>
+                <p>
+                    Laporkan pengaduan Anda secara langsung melalui aplikasi ini tanpa
+                    harus datang ke kantor.
+                </p>
             </div>
+            <div class="isiLayanan">
+                <i class="fa fa-clock"></i>
+                <h2>Proses Cepat</h2>
+                <p>
+                    Pengaduan yang dilaporkan akan segera diproses oleh petugas kami
+                    dengan waktu yang cepat.
+                </p>
+            </div>
+            <div class="isiLayanan">
+                <i class="fa fa-check"></i>
+                <h2>Penanganan Terpercaya</h2>
+                <p>
+                    Pengaduan Anda akan ditangani oleh petugas yang terpercaya dan
+                    profesional.
+                </p>
+            </div>
+        </section>
+        @endguest
+        <section class="cta">
+            <h2>Ayo laporkan pengaduan Anda sekarang juga!</h2>
+            <p>Untuk melaporkan pengaduan, silahkan klik tombol di bawah ini.</p>
+            <button wire:click='btnBuatLaporan'>Laporkan Sekarang</button>
+        </section>
+        <footer class="footer">
+            <p>© 2023 Aplikasi Pengaduan Masyarakat By Haudy</p>
+        </footer>
+        @if ($btnBuatLaporan)
+            @include('livewire.masyarakat.form')
         @endif
+    @endif
 
-    </div>
+
 </div>

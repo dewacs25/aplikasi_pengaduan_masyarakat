@@ -24,6 +24,8 @@ class FormPengaduan extends Component
     public $status;
     public $id_pengaduan;
 
+    public $btnBuatLaporan;
+
     public $pengaturan;
     public $petugas;
     public $nikLama;
@@ -37,10 +39,26 @@ class FormPengaduan extends Component
 
     public function render()
     {
-        $data = Pengaduan::where('id_masyarakat', Auth::guard('web')->user()->id_masyarakat)->get();
+        if (Auth::check('web')) {
+            # code...
+            $data = Pengaduan::where('id_masyarakat', Auth::guard('web')->user()->id_masyarakat)->get();
+        }else{
+            $data = [];
+        }
+
         return view('livewire.masyarakat.form-pengaduan', [
             'data' => $data,
         ]);
+    }
+
+    public function btnBuatLaporan()
+    {
+        if (Auth::check('web') == true) {
+            # code...
+            $this->btnBuatLaporan = true;
+        }else{
+            return redirect('/login');
+        }
     }
 
     public function DeleteSession()
@@ -82,6 +100,7 @@ class FormPengaduan extends Component
         $this->petugas = "";
         $this->detail = "";
         $this->dataTanggapan = [];
+        $this->btnBuatLaporan = "";
     }
     public function SaveAkun()
     {

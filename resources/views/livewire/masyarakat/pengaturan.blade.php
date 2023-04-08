@@ -1,5 +1,5 @@
 <div>
-    <div class="row">
+    <div class="row mt-lg-5 mb-5">
         <div class="col-6">
             <div class="card mb-3">
                 @if ($errors->any())
@@ -37,4 +37,7 @@
             <a href="{{ route('logout') }}" class="btn btn-danger mt-3 float-end">Logout</a>
         </div>
     </div>
+    <footer class="footer">
+        <p>© 2023 Aplikasi Pengaduan Masyarakat By Haudy</p>
+    </footer>
 </div>

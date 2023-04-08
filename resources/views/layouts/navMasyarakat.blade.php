@@ -1,4 +1,4 @@
-<div class="sidebar">
+{{-- <div class="sidebar">
     <div class="logo">
         <img src="{{ asset('img/logo.png') }}" style="width: 100px;" alt="Pengaduan Masyarakat">
     </div>
@@ -16,4 +16,33 @@
 
     </ul>
 
-</div>
+</div> --}}
+<header class="header">
+    <div class="logo">Pengaduan Masyarakat</div>
+    <div class="nav-toggle">
+        =
+    </div>
+    <nav class="nav">
+        <a wire:click='close'>Beranda</a>
+        <a wire:click='Pengaturan'>Pengaturan</a>
+        @guest
+            
+        <a href="/login">Login</a>
+        @endguest
+    </nav>
+</header>
+
+<script>
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelectorAll(".nav a");
+
+    navToggle.addEventListener("click", () => {
+        document.body.classList.toggle("active");
+
+    });
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            document.body.classList.remove("active");
+        });
+    });
+</script>

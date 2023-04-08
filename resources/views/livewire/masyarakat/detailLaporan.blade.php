@@ -41,4 +41,8 @@
             @endif
         </div>
     </div>
+
+    <footer class="footer">
+        <p>© 2023 Aplikasi Pengaduan Masyarakat By Haudy</p>
+    </footer>
 </div>
