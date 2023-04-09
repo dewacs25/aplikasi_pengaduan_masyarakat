@@ -57,7 +57,7 @@ class FormPengaduan extends Component
             # code...
             $this->btnBuatLaporan = true;
         }else{
-            return redirect('/login');
+            return redirect('/login')->with(session()->flash('loginDulu', 'Silahkan Login Terlebih Dahulu'));
         }
     }
 
@@ -68,6 +68,9 @@ class FormPengaduan extends Component
 
     public function Pengaturan()
     {
+        if (Auth::check('web') == false) {
+            return redirect('/login')->with(session()->flash('loginDulu', 'Silahkan Login Terlebih Dahulu'));
+        }
         $this->close();
         $this->pengaturan = true;
         $data = Masyarakat::where('id_masyarakat', Auth::guard('web')->user()->id_masyarakat)->get()->first();

@@ -36,6 +36,9 @@ class AuthMasyarakatController extends Controller
         $req->validate([ 
             'username'=>'required',
             'password'=>'required',
+        ],[
+            'username.required'=>'Username Wajib Di isi',
+            'password.required'=>'Password Wajib Di isi'
         ]);
 
         if (Auth::guard('web')->attempt(['username' => $req->username, 'password' => $req->password])) {

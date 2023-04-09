@@ -9,7 +9,14 @@
 </head>
 
 <body>
-
+    @if (session()->has('loginDulu'))
+        <div class="alert">
+            <button class="closeAlert" wire:click='DeleteSession'>&times;</button>
+            <p>{{ session('loginDulu') }}</p>
+        </div>
+    @endif
+    <a href="/" class="btn btn-sm btn-transparent"><span><img src="{{ asset('img/back.svg') }}" width="30px"
+                alt=""></span></a>
     <div class="container-login">
         <form class="login-form" action="{{ route('login') }}" method="POST">
             @csrf
@@ -30,6 +37,13 @@
         </form>
 
     </div>
+    <script>
+        const iniAlert = document.querySelector('.alert');
+        const closeAlert = document.querySelector('.closeAlert');
+        closeAlert.addEventListener('click', function() {
+            iniAlert.remove();
+        });
+    </script>
 
 </body>
 

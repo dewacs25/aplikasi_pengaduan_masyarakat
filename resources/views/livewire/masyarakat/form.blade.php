@@ -7,12 +7,7 @@
         @endforeach
     @endif
 
-    @if (session()->has('success'))
-        <div class="alert">
-            <button class="closeAlert" wire:click='DeleteSession'>&times;</button>
-            <p>{{ session('success') }}</p>
-        </div>
-    @endif
+    
 
 
     <input type="file" wire:model='gambar' placeholder="Gambar" class="form-control mb-3">
