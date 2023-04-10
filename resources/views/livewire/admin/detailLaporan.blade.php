@@ -28,8 +28,7 @@
                                 @elseif($status == 'selesai')
                                 bg-success
                                 @elseif($status == 'reject')
-                                bg-danger
-                                @endif
+                                bg-danger @endif
                                 "
                     style="margin-right: 10px; padding: 2px; padding-left: 10px; padding-right: 10px; border-radius: 10px">
                     {{ $status }}
@@ -40,24 +39,25 @@
                 @foreach ($dataTanggapan as $isi)
                     <p>{{ $isi->tanggapan }}</p>
                 @endforeach
-                
+
             </div>
 
         </div>
 
         <div class="col-6">
-            <div class="card">
-                
-                @if ($errors->any())
-                    @foreach ($errors->all() as $er)
-                        <p style="font-size: 12px; color: red">{{ $er }}</p>
-                    @endforeach
-                @endif
-                <form method="POST" wire:submit.prevent="KirimTanggapan">
-                    <textarea wire:model="tanggapan" class="form-control mb-1" rows="6" placeholder="Berikan Tanggapan"></textarea>
-                    <button type="submit" class="btn btn-sm btn-secondary ">Kirim</button>
-                </form>
-            </div>
+           
+                <div class="card">
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $er)
+                            <p style="font-size: 12px; color: red">{{ $er }}</p>
+                        @endforeach
+                    @endif
+                    <form method="POST" wire:submit.prevent="KirimTanggapan">
+                        <textarea wire:model="tanggapan" class="form-control mb-1" rows="6" placeholder="Berikan Tanggapan"></textarea>
+                        <button type="submit" class="btn btn-sm btn-secondary ">Kirim</button>
+                    </form>
+                </div>
+         
             <div class="card">
                 @if ($status == 'selesai')
                     <button class="btn btn-secondary btn-sm" wire:click="Unverified">Unverified</button>
@@ -70,8 +70,7 @@
                     <button class="btn btn-danger btn-sm" wire:click="Reject">Reject</button>
                 @endif
                 @if (Auth::guard('petugas')->user()->level == 'admin')
-                    
-                <button class="btn btn-sm btn-danger" wire:click="DeleteLaporan">Delete</button>
+                    <button class="btn btn-sm btn-danger" wire:click="DeleteLaporan">Delete</button>
                 @endif
                 <a href="/admin/pdf/{{ $idPengaduan }}" class="btn btn-sm btn-secondary">PDF</a>
 

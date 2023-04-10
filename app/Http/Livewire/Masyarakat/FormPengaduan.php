@@ -8,6 +8,7 @@ use App\Models\Tanggapan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -23,6 +24,7 @@ class FormPengaduan extends Component
     public $detailGambarLaporan;
     public $status;
     public $id_pengaduan;
+    public $confitmDelete;
 
     public $btnBuatLaporan;
 
@@ -42,7 +44,7 @@ class FormPengaduan extends Component
         if (Auth::check('web')) {
             # code...
             $data = Pengaduan::where('id_masyarakat', Auth::guard('web')->user()->id_masyarakat)->get();
-        }else{
+        } else {
             $data = [];
         }
 
@@ -56,7 +58,7 @@ class FormPengaduan extends Component
         if (Auth::check('web') == true) {
             # code...
             $this->btnBuatLaporan = true;
-        }else{
+        } else {
             return redirect('/login')->with(session()->flash('loginDulu', 'Silahkan Login Terlebih Dahulu'));
         }
     }
@@ -104,26 +106,25 @@ class FormPengaduan extends Component
         $this->detail = "";
         $this->dataTanggapan = [];
         $this->btnBuatLaporan = "";
+        $this->CloseConfirm();
+    }
+
+    public function CloseConfirm()
+    {
+        $this->confitmDelete = "";
     }
     public function SaveAkun()
     {
         $this->validate([
-            'nik' => 'required',
+            'nik' => Rule::unique('masyarakat')->ignore('id_masyarakat', Auth::guard('web')->user()->id_masyarakat),
         ]);
 
-        $cek = Masyarakat::where('nik', $this->nikLama)->get()->first();
-
-        if ($this->nik !== $this->nikLama && $cek) {
-            $this->Pengaturan();
-            session()->flash('success', 'Nik Sudah Digunakan');
-        } else {
-            Masyarakat::where('id_masyarakat', $this->idid)->update([
-                'nik' => $this->nik,
-                'nama' => $this->nama,
-                'telp' => $this->telp,
-            ]);
-            session()->flash('success', 'Data Berhasil Di Update');
-        }
+        Masyarakat::where('id_masyarakat', $this->idid)->update([
+            'nik' => $this->nik,
+            'nama' => $this->nama,
+            'telp' => $this->telp,
+        ]);
+        session()->flash('success', 'Data Berhasil Di Update');
     }
 
     public function KirimLaporan()
@@ -164,8 +165,7 @@ class FormPengaduan extends Component
         $this->detailGambarLaporan = $data->foto;
         $this->status = $data->status;
         $this->id_pengaduan = $data->id_pengaduan;
-        $this->dataTanggapan = Tanggapan::where('id_pengaduan',$id)->get();
-       
+        $this->dataTanggapan = Tanggapan::where('id_pengaduan', $id)->get();
     }
 
     public function DeleteLaporan($id)
@@ -176,5 +176,10 @@ class FormPengaduan extends Component
         Pengaduan::where('id_pengaduan', $id)->delete();
         $this->close();
         session()->flash('success', 'Hapus Laporan Berhasil');
+    }
+
+    public function ConfirmDelete()
+    {
+        $this->confitmDelete = true;
     }
 }
