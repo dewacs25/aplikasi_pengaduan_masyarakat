@@ -37,7 +37,7 @@
             <div class="card">
                 <h3 class="text-dark">Tanggapan</h3>
                 @foreach ($dataTanggapan as $isi)
-                    <p>{{ $isi->tanggapan }}</p>
+                    <p><span style="font-size: 12px; color: black">{{ $isi->petugas->nama_petugas }} : </span>{{ $isi->tanggapan }}</p>
                 @endforeach
 
             </div>

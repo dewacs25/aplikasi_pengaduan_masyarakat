@@ -5,7 +5,7 @@ body {
 
 }
 
-/* Styles for desktop devices */
+/* ini Tampilan Desktop */
 @media (min-width: 768px) {
     .container {
         max-width: 960px;
@@ -37,6 +37,10 @@ body {
         color: #ffffff;
     }
 
+    .nav-toggle{
+        display: none;
+    }
+
     .nav {
         display: flex;
         align-items: center;
@@ -52,8 +56,8 @@ body {
     }
 
     .hero {
-        background-image: url('../img/haudy.png');
-
+        background-image: url('../img/haudy2.png');
+        box-shadow: 1px 1px 10px 20px rgba(0, 0, 0, 0.1);
         background-size: 100% 100%;
         height: 500px;
         background-size: cover;
@@ -75,6 +79,12 @@ body {
         display: flex;
         justify-content: space-between;
         padding: 50px 0;
+    }
+    .isiLayanan:hover{
+        transform: scale(1.1);
+        transition: all 200ms;
+        box-shadow: 0px 0px 10px 5px rgba(28, 2, 121, 0.5);
+        background-color: #fff;
     }
 
     .isiLayanan {
@@ -208,7 +218,7 @@ body {
     }
 
     .hero {
-        background-image: url('../img/hero.png');
+        background-image: url('../img/haudy2.png');
 
         height: 300px;
         background-size: cover;
@@ -451,7 +461,9 @@ body {
 
     z-index: 1000;
     margin: 0 auto;
+    animation: fadeIn 0.5s forwards;
 }
+
 
 .btn {
     padding: 0.5rem 1rem;
@@ -577,4 +589,9 @@ body {
     transition: all 300ms;
     transform: scale(1.03);
     border-radius: 10px;
+}
+
+.iniIconHover:hover{
+    transition: all 100ms;
+    transform: scale(1.1);
 }

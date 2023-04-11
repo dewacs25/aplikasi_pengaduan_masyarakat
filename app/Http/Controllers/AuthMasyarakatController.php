@@ -28,7 +28,7 @@ class AuthMasyarakatController extends Controller
             'telp'=>$req->telp,
         ]);
 
-        return redirect('/login');
+        return redirect('/login')->with(session()->flash('loginDulu','Register Berhasil Silahkan Login'));
     }
 
     public function login(Request $req)

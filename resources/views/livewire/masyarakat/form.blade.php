@@ -7,13 +7,16 @@
         @endforeach
     @endif
 
-    
 
 
-    <input type="file" wire:model='gambar' placeholder="Gambar" class="form-control mb-3">
+    <label style="font-size: 15px;" for="gambar"><span class="btn btn-secondary">Upload Gambar</span></label>
+    <br>
+    <input type="file" wire:model='gambar' id="gambar" placeholder="Gambar" class="form-control mb-3"
+        style="display: none">
     @if ($gambar)
         <img src="{{ $gambar->temporaryUrl() }}" style="width: 100%" alt="">
     @endif
+    <br>
     <textarea wire:model='isiLaporan' name="isiLaporan" id="" rows="5" class="form-control mb-3"
         placeholder="Masukan Laporan Anda"></textarea>
     <center>

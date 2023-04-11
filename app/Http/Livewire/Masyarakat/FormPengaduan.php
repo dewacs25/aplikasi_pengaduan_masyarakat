@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class FormPengaduan extends Component
 {
@@ -38,12 +39,14 @@ class FormPengaduan extends Component
 
 
     use WithFileUploads;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap'; 
 
     public function render()
     {
         if (Auth::check('web')) {
             # code...
-            $data = Pengaduan::where('id_masyarakat', Auth::guard('web')->user()->id_masyarakat)->get();
+            $data = Pengaduan::where('id_masyarakat', Auth::guard('web')->user()->id_masyarakat)->paginate(10);
         } else {
             $data = [];
         }

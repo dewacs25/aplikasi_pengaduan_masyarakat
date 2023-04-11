@@ -33,7 +33,7 @@
             <div class="col-6 card">
                 <h3>Tanggapan</h3>
                 @foreach ($dataTanggapan as $tanggapan)
-                    <p>{{ $tanggapan->tanggapan }}</p>
+                    <p><span style="font-size: 12px; color: black ">{{ $tanggapan->petugas->nama_petugas }} : </span>{{ $tanggapan->tanggapan }}</p>
                     <hr>
                 @endforeach
             </div>

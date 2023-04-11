@@ -13,11 +13,11 @@
         @endauth
         @guest
             <section class="hero">
-                <h1>Laporkan keluhan Anda sekarang!</h1>
+                {{-- <h1>Laporkan keluhan Anda sekarang!</h1> --}}
             </section>
             <section class="layanan">
                 <div class="isiLayanan">
-                    <i class="fa fa-user"></i>
+                    <i class="fa fa-user iniIconHover"></i>
                     <h2>Daftar Akun</h2>
                     <p>
                         Daftarkan akun Anda untuk dapat melaporkan pengad an dengan mudah
@@ -25,7 +25,7 @@
                     </p>
                 </div>
                 <div class="isiLayanan">
-                    <i class="fa fa-comments"></i>
+                    <i class="fa fa-comments iniIconHover"></i>
                     <h2>Laporkan Pengaduan</h2>
                     <p>
                         Laporkan pengaduan Anda secara langsung melalui aplikasi ini tanpa
@@ -33,7 +33,7 @@
                     </p>
                 </div>
                 <div class="isiLayanan">
-                    <i class="fa fa-clock"></i>
+                    <i class="fa fa-clock iniIconHover"></i>
                     <h2>Proses Cepat</h2>
                     <p>
                         Pengaduan yang dilaporkan akan segera diproses oleh petugas kami
@@ -41,7 +41,7 @@
                     </p>
                 </div>
                 <div class="isiLayanan">
-                    <i class="fa fa-check"></i>
+                    <i class="fa fa-check iniIconHover"></i>
                     <h2>Penanganan Terpercaya</h2>
                     <p>
                         Pengaduan Anda akan ditangani oleh petugas yang terpercaya dan
